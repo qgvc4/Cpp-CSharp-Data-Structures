@@ -18,7 +18,7 @@ int[] array = {1, 2};
 int a = array[1];
 array[3] = a;
 ```
-### Iteration
+#### Iteration
 ```csharp
 foreach (int i in list) 
 {
