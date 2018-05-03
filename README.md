@@ -57,6 +57,49 @@ Array.Sort(array, (x, y) => { return y - x; });
 ```
 - Add
 ## String
+### C#
+#### Create
+```csharp
+string firstname = "Matt";
+string lastname = "Smith";
+string name = firstname + lastname;
+char[] letters = { 'H', 'e', 'l', 'l', 'o' };
+string greetings = new string(letters);
+
+string[] sarray = { greetings, name };
+string message = String.Join(", ", sarray);
+Console.WriteLine("Message: {0}", message); // Message: Hello, MattSmith
+
+//formatting method to convert a value
+DateTime waiting = new DateTime(2012, 10, 10, 17, 58, 1);
+string chat = String.Format("Message sent at {0:t} on {0:D}", waiting);
+Console.WriteLine("Message: {0}", chat); // Message: Message sent at 5:58 PM on Wednesday, October 10, 2012
+```
+#### APIs
+* length `name.Length`
+* to char array `name.ToCharArray()`
+* Split
+```csharp
+string log = "word|a word, ok.";
+char[] delimers = { '|', ' ', ',', '.' };
+string[] words = log.Split(delimers, StringSplitOptions.RemoveEmptyEntries);
+Console.WriteLine(log);
+Console.WriteLine("===");
+foreach(string s in words)
+{
+    Console.WriteLine(s);
+}
+Console.WriteLine("===");
+```
+* substring
+```csharp
+string substr = str.Substring(stratIndex, length);
+```
+* join
+```csharp
+string message = String.Join(", ", sarray);
+// String.Join(separator, IEnumerable<String>/Object[]/String[])
+```
 ## Arraylist
 ## Linkedlist
 ## Queue
