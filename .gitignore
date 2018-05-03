@@ -1,9 +1,6 @@
 # Ignore Everything
 *
 
-# Unignore directories so we can recurse into them
-!*/
-
 # Unignore gitignore
 !.gitignore
 
