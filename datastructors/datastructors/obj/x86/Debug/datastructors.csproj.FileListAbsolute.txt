@@ -1,0 +1,5 @@
+/Users/qiwenguo/Desktop/Cpp-CSharp-Data-Structures/datastructors/datastructors/bin/Debug/datastructors.exe
+/Users/qiwenguo/Desktop/Cpp-CSharp-Data-Structures/datastructors/datastructors/bin/Debug/datastructors.pdb
+/Users/qiwenguo/Desktop/Cpp-CSharp-Data-Structures/datastructors/datastructors/obj/x86/Debug/datastructors.csproj.CoreCompileInputs.cache
+/Users/qiwenguo/Desktop/Cpp-CSharp-Data-Structures/datastructors/datastructors/obj/x86/Debug/datastructors.exe
+/Users/qiwenguo/Desktop/Cpp-CSharp-Data-Structures/datastructors/datastructors/obj/x86/Debug/datastructors.pdb
