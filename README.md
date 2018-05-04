@@ -5,6 +5,65 @@ Critical contents: Class, Create, Add/Delete/Find/Update/Iteration.
 
 Additional contents: comparator, sort
 ## Array
+
+### C++
+- `std::array` is a class version of `c` array, size if fixed at compile time. `std:: vector` is a small class with pointers pointing to heap. **you may always prefer vector**
+- Summary of declaration
+```CPP
+    vector<T> vect; // {vector size, meta data} on stack, {bulk contents} on heap
+    vector<T>* vect; // {vector size, meta data} and {bulk contents} on heap
+    vector<*T> vect; // {bulk contents} are a set of pointers
+```
+- Initializations example
+```CPP
+    vector<int> vect{10, 20, 30};
+    // Any STL container assignment is a deep copy
+    // But an object which contains a pointer will only have the pointer copied
+    vector<int> vect2 = vect1; // deep copy
+    vector<int> vect2(vect1); // deep copy
+    vector<int> vect2(vect1.begin(), vect1.end()); // deep copy
+    vect2.assign(vect1.begin(), vect1.end());
+    vector<int> vect(5, 10); // 5 elements of value 10
+```
+- Add
+```CPP
+    vect.push_back(3);
+    vect.insert(vect.begin() + 3, 5); // add 5 to position 3.
+    vect.insert(vect.begin(), 4, 5); // add 4 elements of value 5 to beginning
+    vect.insert(vect.end(), vect1.begin(), vect1.end(); // append vect1 to vect
+```
+- Delete
+```CPP
+    vect.erase(vect.begin() + 5); // remove one element
+    vect.erase(vect.begin(), vect.begin + 2); // remove 2 elements (right exclude)
+```
+- Find
+```CPP
+    vector<int> vect;
+    vect[3] = 2; //undefined but no error, the bound is not checked
+    vect.at(3) = 2; // error, bound checked
+```
+- Update
+```CPP
+    replace(vect.begin(), vect.end(), 20, 99); // change all 20 to 99
+```
+- Iteration
+```CPP
+    for (std::vector<int>::iterator it = vect.begin(); it != vect.end(); it++)
+    {
+        cout << *it;
+    }
+    for (std::vector<int>::size_type it = 0; it < vect.size(); it++)
+    {
+        cout << vect[it];
+    }
+```
+- Addition
+```CPP
+    reverse(vect.begin(), vect.end());
+    sort(vect.begin(), vect.end());
+    replace(vect.begin(), vect.end(), 20, 99); // change all 20 to 99
+```
 ### C#
 #### Create
 ```csharp
@@ -38,25 +97,42 @@ Array.Sort(array);
 Array.Sort(array, (x, y) => { return y - x; });
 ```
 
+
+## String
+
 ### C++
-- `std::array` is a class version of `c` array, size if fixed at compile time. `std:: vector` is a small class with pointers pointing to heap. **you may always prefer vector**
+- Similar to vector, `std::string` is a small class with pointers pointing to heap. 
 - Summary of declaration
 ```CPP
-    vector<T> vect; // {vector size, meta data} on stack, {bulk contents} on heap
-    vector<T>* vect; // {vector size, meta data} and {bulk contents} on heap
-    vector<*T> vect; // {bulk contents} are a set of pointers
+
 ```
 - Initializations example
 ```CPP
-    vector<int> vect{10, 20, 30};
-    vector<int> vect2 = vect1; // deep copy
-    vector<int> vect2(vect1); // deep copy
-    vector<int> vect2(vect1.begin(), vect1.end()); // deep copy
-    vect2.assign(vect1.begin(), vect1.end());
-    vector<int> vect(5, 10); // 5 elements of value 10
+
 ```
 - Add
-## String
+```CPP
+   
+```
+- Delete
+```CPP
+    
+```
+- Find
+```CPP
+  
+```
+- Update
+```CPP
+
+```
+- Iteration
+```CPP
+ 
+```
+- Addition
+```CPP
+ 
 ### C#
 #### Create
 ```csharp
@@ -109,3 +185,11 @@ string message = String.Join(", ", sarray);
 ## Tree
 ## Graph
 ## Trie
+## Additionals
+### CPP
+- `==` and `.compare() == 0` are the same for objects.
+- "Rule of Three" in CPP
+    - a copy constructor
+    - an assignment operator
+    - a destructor
+- dynamic allocation and delete: `new`, `delete p`, `delete[] q`
