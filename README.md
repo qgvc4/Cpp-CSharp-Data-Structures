@@ -1,4 +1,4 @@
-# Cpp-CSharp-Data-Structures
+# C++ VS C# Data Structures
 This is a summary of basic data structures and how they are used in `C++` and `C#`.
 
 Critical contents: Class, Create, Add/Delete/Find/Update/Iteration.
