@@ -1,13 +1,45 @@
-# C++ VS C# Data Structures
+# Cpp-CSharp-Data-Structures
 This is a summary of basic data structures and how they are used in `C++` and `C#`.
 
 Critical contents: Class, Create, Add/Delete/Find/Update/Iteration.
 
 Additional contents: comparator, sort
 ## Array
+### C#
+#### Create
+```csharp
+int[] array = new int[10];
+int[] array = new int[2] {1, 2};
+int[] array = new int[] {1, 2};
+int[] array = {1, 2};
+```
+#### Find and Update
+```csharp
+int a = array[1];
+array[3] = a;
+```
+#### Iteration
+```csharp
+foreach (int i in list) 
+{
+    Console.Write(i + " ");
+}
+
+for (int i = 0; i < array.Length; i++)
+{
+    Console.Write(array[i] + " ");
+}
+```
+#### Sort
+```csharp
+// ascending
+Array.Sort(array);
+// descending
+Array.Sort(array, (x, y) => { return y - x; });
+```
 
 ### C++
-- `std::array` is a class version of `c` array, size if fixed at compile time. `std:: vector` is a small class with pointers pointing to heap. **you may always prefer vector**
+- `std::array` is a class version of `c` array, size is fixed at compile time. `std:: vector` is a small class with pointers pointing to heap. **you may always prefer vector**
 - Summary of declaration
 ```CPP
     vector<T> vect; // {vector size, meta data} on stack, {bulk contents} on heap
@@ -17,7 +49,7 @@ Additional contents: comparator, sort
 - Initializations example
 ```CPP
     vector<int> vect{10, 20, 30};
-    // Any STL container assignment is a deep copy
+    // Any STL container assignment is a deep copy, dictated by its assign operator or copy constructor.
     // But an object which contains a pointer will only have the pointer copied
     vector<int> vect2 = vect1; // deep copy
     vector<int> vect2(vect1); // deep copy
@@ -64,39 +96,6 @@ Additional contents: comparator, sort
     sort(vect.begin(), vect.end());
     replace(vect.begin(), vect.end(), 20, 99); // change all 20 to 99
 ```
-### C#
-#### Create
-```csharp
-int[] array = new int[10];
-int[] array = new int[2] {1, 2};
-int[] array = new int[] {1, 2};
-int[] array = {1, 2};
-```
-#### Find and Update
-```csharp
-int a = array[1];
-array[3] = a;
-```
-#### Iteration
-```csharp
-foreach (int i in list) 
-{
-    Console.Write(i + " ");
-}
-
-for (int i = 0; i < array.Length; i++)
-{
-    Console.Write(array[i] + " ");
-}
-```
-#### Sort
-```csharp
-// ascending
-Array.Sort(array);
-// descending
-Array.Sort(array, (x, y) => { return y - x; });
-```
-
 
 ## String
 
@@ -104,78 +103,53 @@ Array.Sort(array, (x, y) => { return y - x; });
 - Similar to vector, `std::string` is a small class with pointers pointing to heap. 
 - Summary of declaration
 ```CPP
-
+string s("hello"); // usually not use pointer and new
 ```
 - Initializations example
 ```CPP
-
+string s1 = "foo";
+string s2 = string("foo"); // the two are the same, they created a temporary 
+// string, assign to s and the compiler will delete the temporary.
+string s3 (s1, 1, 2); // copy a substring of s1 to s3 from position 1, copy length = 2
+string s4 (10, 'x'); // "xxxxxxxxxx"
+string s5 (s1.begin(), s1.begin() + 2);
 ```
 - Add
 ```CPP
-   
+str.insert(5, s1);
+str.insert(str.begin() + 2, s1.begin(), s1.begin() + 2);
+str.append(s2);
+str.append(s2.begin() + 2, s2.end());
 ```
 - Delete
 ```CPP
-    
+str.erase(8, 10); // remove 10 chars from position 8
+str.erase(str.begin() + 5); // move a char at position 5  
 ```
 - Find
 ```CPP
-  
+str[1];
+str.at(2);
 ```
 - Update
 ```CPP
-
+s[1] = 'a';
 ```
 - Iteration
 ```CPP
- 
+    for (std::string<int>::iterator it = string.begin(); it != string.end(); it++)
+    {
+        cout << *it;
+    }
+    for (std::string<int>::size_type it = 0; it < string.size(); it++)
+    {
+        cout << vect[it];
+    }
 ```
 - Addition
 ```CPP
-```
-
-### C#
-#### Create
-```csharp
-string firstname = "Matt";
-string lastname = "Smith";
-string name = firstname + lastname;
-char[] letters = { 'H', 'e', 'l', 'l', 'o' };
-string greetings = new string(letters);
-
-string[] sarray = { greetings, name };
-string message = String.Join(", ", sarray);
-Console.WriteLine("Message: {0}", message); // Message: Hello, MattSmith
-
-//formatting method to convert a value
-DateTime waiting = new DateTime(2012, 10, 10, 17, 58, 1);
-string chat = String.Format("Message sent at {0:t} on {0:D}", waiting);
-Console.WriteLine("Message: {0}", chat); // Message: Message sent at 5:58 PM on Wednesday, October 10, 2012
-```
-#### APIs
-* length `name.Length`
-* to char array `name.ToCharArray()`
-* Split
-```csharp
-string log = "word|a word, ok.";
-char[] delimers = { '|', ' ', ',', '.' };
-string[] words = log.Split(delimers, StringSplitOptions.RemoveEmptyEntries);
-Console.WriteLine(log);
-Console.WriteLine("===");
-foreach(string s in words)
-{
-    Console.WriteLine(s);
-}
-Console.WriteLine("===");
-```
-* substring
-```csharp
-string substr = str.Substring(stratIndex, length);
-```
-* join
-```csharp
-string message = String.Join(", ", sarray);
-// String.Join(separator, IEnumerable<String>/Object[]/String[])
+reverse(str.begin(), str.end());
+sort(str.begin(), str.end());
 ```
 ## Arraylist
 ## Linkedlist
@@ -190,7 +164,28 @@ string message = String.Join(", ", sarray);
 ### CPP
 - `==` and `.compare() == 0` are the same for objects.
 - "Rule of Three" in CPP
-    - a copy constructor
-    - an assignment operator
-    - a destructor
+    + a copy constructor/constructor
+        ```CPP
+        MyClass( const MyClass& other ); // correct
+        MyClass( const MyClass* other );// not this
+        ```
+        without explicit declaration, an implicit copy constructor is given by constructor, equivalent to 
+        ```CPP
+        MyClass::MyClass( const MyClass& other ) :
+        x( other.x ), c( other.c ), s( other.s )
+        {}
+        ```
+        It is not always sufficient, like for `vector` we need deep copy
+    + an assignment operator
+
+        default assignment operator
+        ```CPP
+        MyClass& MyClass::operator=( const MyClass& other ) {
+            x = other.x;
+            c = other.c;
+            s = other.s;
+            return *this;
+        }
+        ```
+    + a destructor
 - dynamic allocation and delete: `new`, `delete p`, `delete[] q`
